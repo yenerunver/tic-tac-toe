@@ -1,0 +1,48 @@
+{
+  "name": "tic-tac-toe",
+  "version": "0.0.0",
+  "description": "A simple tic-tac-toe game to showcase a full JS stack including web and mobile applications",
+  "keywords": [
+    "javascript",
+    "full",
+    "stack",
+    "game"
+  ],
+  "main": "index.js",
+  "repository": "git@github.com:yenerunver/tic-tac-toe.git",
+  "author": "Yener Unver <yenerunver@hotmail.com>",
+  "license": "MIT",
+  "homepage": "https://yenerunver.github.io/tic-tac-toe",
+  "bugs": "https://github.com/yenerunver/tic-tac-toe/issues",
+  "engines": {
+    "node": "=18.x",
+    "yarn": ">=1.15"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
+    "commitlint": "^17.7.2",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "standard-version": "^9.5.0"
+  },
+  "scripts": {
+    "format": "yarn run format:eslint && npm run format:prettier",
+    "format:eslint": "eslint --ext .js,.html . --fix",
+    "format:prettier": "prettier \"**/*.{ts,js,mjs,cjs,md,json,html,css}\" --write --ignore-path .prettierignore",
+    "lint": "yarn run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint --ext .js,.html .",
+    "lint:prettier": "prettier \"**/*.{ts,js,mjs,cjs,md,json,html,css}\" --ignore-path .prettierignore --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
+    "release-patch": "standard-version --release-as patch -t \"\"",
+    "release-minor": "standard-version --release-as minor -t \"\"",
+    "release-major": "standard-version --release-as major -t \"\"",
+    "prepare": "husky install"
+  }
+}

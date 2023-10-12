@@ -1,0 +1,7 @@
+# Libraries
+**/.git
+**/.idea
+**/node_modules
+
+# Markdown files
+*.MD
