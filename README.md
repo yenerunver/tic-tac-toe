@@ -11,12 +11,16 @@ A simple tic-tac-toe game to showcase a full JS stack.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Game logic is forked from [React Tutorial](https://react.dev/learn/tutorial-tic-tac-toe).
+
 To install dependencies:
+
 ```bash
 yarn
 ```
 
 To run the development server:
+
 ```bash
 yarn dev
 ```
