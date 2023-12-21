@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { calculateWinner, isDraw } from "../engine";
+import { calculateWinner, isDraw } from "./engine";
 import Square from "./square";
 
-export default function Board({
+const Board = ({
   xIsNext,
   squares,
   onPlay,
@@ -12,7 +12,7 @@ export default function Board({
   xIsNext: boolean;
   squares: Array<string>;
   onPlay: Function;
-}) {
+}) => {
   const handleClick = (i: number) => {
     if (calculateWinner(squares) || isDraw(squares) || squares[i]) {
       return;
@@ -41,8 +41,8 @@ export default function Board({
 
   return (
     <>
-      <div className="status">{status}</div>
-      <div className="board-row">
+      <div className="mb-4">{status}</div>
+      <div className="flex">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
         <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
@@ -59,4 +59,6 @@ export default function Board({
       </div>
     </>
   );
-}
+};
+
+export default Board;

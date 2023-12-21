@@ -1,10 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
-import Board from "@/app/game/components/board";
-import Link from "next/link";
+import type { ReactElement } from "react";
 
-export default function Game() {
+import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
+
+import Board from "@/components/board";
+import type { NextPageWithLayout } from "./_app";
+
+import Layout from "../components/layout";
+
+const GamePage: NextPageWithLayout = () => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
 
   const [currentMove, setCurrentMove] = useState(0);
@@ -20,12 +26,23 @@ export default function Game() {
     setCurrentMove(nextHistory.length - 1);
   };
 
+  const searchParams = useSearchParams();
+
+  const username = searchParams.get("username");
+
   return (
     <div className="game">
       <div className="game-board">
+        <p>Hello: {username}</p>
+        <p>Last played player: SuCuK</p>
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-        <Link href="/">List of users</Link>
       </div>
     </div>
   );
-}
+};
+
+GamePage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
+
+export default GamePage;

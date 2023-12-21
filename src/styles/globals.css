@@ -14,37 +14,12 @@
   }
 }
 
-body {
+div.app {
   color: rgb(var(--font-color));
 }
 
-body > main {
+div.app > main {
   background-image: var(--background-image);
   width: 340px;
   height: 640px;
-}
-
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.status {
-  margin-bottom: 10px;
-}
-
-.square {
-  background: white;
-  color: black;
-  border: 1px solid black;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
 }
