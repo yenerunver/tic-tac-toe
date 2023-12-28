@@ -21,8 +21,17 @@
       "error",
       {
         "blankLine": "always",
-        "prev": ["const", "let", "var", "case", "default", "directive"],
-        "next": "*"
+        "prev": "*",
+        "next": [
+          "block",
+          "block-like",
+          "break",
+          "return",
+          "switch",
+          "function",
+          "if",
+          "directive"
+        ]
       }
     ],
     "import/extensions": [

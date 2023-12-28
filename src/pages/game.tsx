@@ -1,30 +1,45 @@
 "use client";
 
-import type { ReactElement } from "react";
+import React, { useEffect, useState } from "react";
 
-import React, { useState } from "react";
+import type { ReactElement } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Board from "@/components/board";
-import type { NextPageWithLayout } from "./_app";
-
+import Link from "next/link";
+import { onSnapshot, query } from "@firebase/firestore";
+import { movesRef } from "@/components/firebase";
 import Layout from "../components/layout";
 
+import type { NextPageWithLayout } from "./_app";
+
+const BEGINNING_STATE = Array(9).fill(null);
+
 const GamePage: NextPageWithLayout = () => {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentSquares, setCurrentSquares] = useState([...BEGINNING_STATE]);
+  const [latestPlayer, setLatestPlayer] = useState("");
+  const xIsNext =
+    (9 - currentSquares.filter((square) => square === null).length) % 2 === 0;
 
-  const [currentMove, setCurrentMove] = useState(0);
+  useEffect(() => {
+    const unsubscribe = onSnapshot(query(movesRef), (querySnapshot) => {
+      if (!querySnapshot.size) {
+        return;
+      }
+      const moves = [...BEGINNING_STATE];
+      let tempLatestPlayer = "";
+      querySnapshot.forEach((doc) => {
+        moves[doc.data().square] = doc.data().sign;
+        tempLatestPlayer = doc.data().player;
+      });
+      setCurrentSquares(moves);
+      setLatestPlayer(tempLatestPlayer);
+    });
 
-  const xIsNext = currentMove % 2 === 0;
-
-  const currentSquares = history[currentMove];
-
-  const handlePlay = (nextSquares: Array<string>) => {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
-  };
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const searchParams = useSearchParams();
 
@@ -33,9 +48,15 @@ const GamePage: NextPageWithLayout = () => {
   return (
     <div className="game">
       <div className="game-board">
-        <p>Hello: {username}</p>
-        <p>Last played player: SuCuK</p>
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        {username && <p>Hello: {username}</p>}
+        {latestPlayer && <p>Last played player: {latestPlayer}</p>}
+        <Board xIsNext={xIsNext} squares={currentSquares} />
+        <Link
+          href="/"
+          className="bg-gradient-to-b from-white to-gray-300 font-medium p-2 text-black uppercase w-full mt-1 inline-flex justify-center"
+        >
+          Back to home
+        </Link>
       </div>
     </div>
   );

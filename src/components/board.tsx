@@ -1,30 +1,36 @@
 "use client";
 
 import React from "react";
+import { useSearchParams } from "next/navigation";
 import { calculateWinner, isDraw } from "./engine";
 import Square from "./square";
 
 const Board = ({
   xIsNext,
   squares,
-  onPlay,
 }: {
   xIsNext: boolean;
   squares: Array<string>;
-  onPlay: Function;
 }) => {
+  const searchParams = useSearchParams();
+  const username = searchParams.get("username");
+
   const handleClick = (i: number) => {
     if (calculateWinner(squares) || isDraw(squares) || squares[i]) {
       return;
     }
-    const nextSquares = squares.slice();
 
-    if (xIsNext) {
-      nextSquares[i] = "X";
-    } else {
-      nextSquares[i] = "O";
-    }
-    onPlay(nextSquares);
+    fetch("/api/move", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        square: i,
+        sign: xIsNext ? "X" : "O",
+        username,
+      }),
+    });
   };
 
   const winner = calculateWinner(squares);
