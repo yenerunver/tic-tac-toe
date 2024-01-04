@@ -5,3 +5,8 @@
 
 # Markdown files
 *.MD
+
+# build
+/.next/
+/out/
+/android/

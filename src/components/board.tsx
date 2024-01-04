@@ -1,20 +1,18 @@
 "use client";
 
 import React from "react";
-import { useSearchParams } from "next/navigation";
 import { calculateWinner, isDraw } from "./engine";
 import Square from "./square";
 
 const Board = ({
+  username,
   xIsNext,
   squares,
 }: {
+  username: string;
   xIsNext: boolean;
   squares: Array<string>;
 }) => {
-  const searchParams = useSearchParams();
-  const username = searchParams.get("username");
-
   const handleClick = (i: number) => {
     if (calculateWinner(squares) || isDraw(squares) || squares[i]) {
       return;

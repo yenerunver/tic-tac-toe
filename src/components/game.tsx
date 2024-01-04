@@ -3,19 +3,20 @@
 import React, { useEffect, useState } from "react";
 
 import type { ReactElement } from "react";
-import { useSearchParams } from "next/navigation";
 
 import Board from "@/components/board";
-import Link from "next/link";
 import { onSnapshot, query } from "@firebase/firestore";
 import { movesRef } from "@/components/firebase";
-import Layout from "../components/layout";
-
-import type { NextPageWithLayout } from "./_app";
 
 const BEGINNING_STATE = Array(9).fill(null);
 
-const GamePage: NextPageWithLayout = () => {
+const GamePage = ({
+  username,
+  onUsernameChange,
+}: {
+  username: string;
+  onUsernameChange: Function;
+}): ReactElement => {
   const [currentSquares, setCurrentSquares] = useState([...BEGINNING_STATE]);
   const [latestPlayer, setLatestPlayer] = useState("");
   const xIsNext =
@@ -41,29 +42,26 @@ const GamePage: NextPageWithLayout = () => {
     };
   }, []);
 
-  const searchParams = useSearchParams();
-
-  const username = searchParams.get("username");
+  const handleUsernameReset = () => {
+    onUsernameChange("");
+  };
 
   return (
     <div className="game">
       <div className="game-board">
         {username && <p>Hello: {username}</p>}
         {latestPlayer && <p>Last played player: {latestPlayer}</p>}
-        <Board xIsNext={xIsNext} squares={currentSquares} />
-        <Link
-          href="/"
+        <Board username={username} xIsNext={xIsNext} squares={currentSquares} />
+        <button
+          type="button"
+          onClick={handleUsernameReset}
           className="bg-gradient-to-b from-white to-gray-300 font-medium p-2 text-black uppercase w-full mt-1 inline-flex justify-center"
         >
           Back to home
-        </Link>
+        </button>
       </div>
     </div>
   );
-};
-
-GamePage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
 };
 
 export default GamePage;
