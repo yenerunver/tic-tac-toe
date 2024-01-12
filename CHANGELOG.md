@@ -2,8 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.2.1](https://github.com/yenerunver/tic-tac-toe/compare/0.2.0...0.2.1) (2024-01-12)
+### [0.2.2](https://github.com/yenerunver/tic-tac-toe/compare/0.2.1...0.2.2) (2024-01-12)
 
+
+### Bug Fixes
+
+* padding on mobile design ([8b53f5a](https://github.com/yenerunver/tic-tac-toe/commit/8b53f5a2bb6e806289a6fc0d12aec53253e3cb9f))
+
+### [0.2.1](https://github.com/yenerunver/tic-tac-toe/compare/0.2.0...0.2.1) (2024-01-12)
 
 ### Bug Fixes
 
