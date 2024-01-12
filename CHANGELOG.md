@@ -4,10 +4,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.1.1](https://github.com/yenerunver/tic-tac-toe/compare/0.1.0...0.1.1) (2024-01-12)
 
-
 ### Features
 
-* firebase functions deploy ([11662ba](https://github.com/yenerunver/tic-tac-toe/commit/11662bad0e7a04ca5358918544f21393686a477e))
+- firebase functions deploy ([11662ba](https://github.com/yenerunver/tic-tac-toe/commit/11662bad0e7a04ca5358918544f21393686a477e))
 
 ## [0.1.0](https://github.com/yenerunver/tic-tac-toe/compare/0.0.1...0.1.0) (2024-01-04)
 

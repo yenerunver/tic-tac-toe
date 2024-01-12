@@ -33,6 +33,8 @@ const Board = ({
 
   const winner = calculateWinner(squares);
 
+  const isGameOver = winner || isDraw(squares);
+
   let status;
 
   if (winner) {
@@ -42,6 +44,16 @@ const Board = ({
   } else {
     status = `Next player: ${xIsNext ? "X" : "O"}`;
   }
+
+  const handleGameReset = async () => {
+    await fetch("/api/reset", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+  };
 
   return (
     <>
@@ -61,6 +73,17 @@ const Board = ({
         <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
+      {isGameOver && (
+        <div className="board-row">
+          <button
+            type="button"
+            onClick={handleGameReset}
+            className="bg-gradient-to-b from-gray-300 to-black font-medium p-2 text-white uppercase w-full mt-1 inline-flex justify-center"
+          >
+            Reset game
+          </button>
+        </div>
+      )}
     </>
   );
 };

@@ -24,14 +24,11 @@ const GamePage = ({
 
   useEffect(() => {
     const unsubscribe = onSnapshot(query(movesRef), (querySnapshot) => {
-      if (!querySnapshot.size) {
-        return;
-      }
       const moves = [...BEGINNING_STATE];
       let tempLatestPlayer = "";
       querySnapshot.forEach((doc) => {
         moves[doc.data().square] = doc.data().sign;
-        tempLatestPlayer = doc.data().player;
+        tempLatestPlayer = doc.data().username;
       });
       setCurrentSquares(moves);
       setLatestPlayer(tempLatestPlayer);
@@ -50,7 +47,7 @@ const GamePage = ({
     <div className="game">
       <div className="game-board">
         {username && <p>Hello: {username}</p>}
-        {latestPlayer && <p>Last played player: {latestPlayer}</p>}
+        {latestPlayer && <p>Last played: {latestPlayer}</p>}
         <Board username={username} xIsNext={xIsNext} squares={currentSquares} />
         <button
           type="button"

@@ -1,5 +1,12 @@
 import { initializeApp } from "@firebase/app";
-import { collection, getFirestore } from "@firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  getFirestore,
+  query,
+} from "@firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -16,4 +23,9 @@ const db = getFirestore(app);
 
 const movesRef = collection(db, "moves");
 
-export { app, db, movesRef };
+const deleteAllMoves = async () => {
+  const allEntries = await getDocs(query(collection(db, "moves")));
+  allEntries.forEach((entry) => deleteDoc(doc(db, "moves", entry.id)));
+};
+
+export { app, db, movesRef, deleteAllMoves };
