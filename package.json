@@ -58,9 +58,9 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "deploy": "firebase deploy --only functions --project tic-tac-toe-d1a6f",
+    "export": "next build",
+    "deploy:android": "next build && npx cap sync && npx cap open android",
+    "deploy:api": "firebase deploy --only functions --project tic-tac-toe-d1a6f",
     "format": "yarn run format:eslint && yarn run format:prettier",
     "format:eslint": "eslint --fix .",
     "format:prettier": "prettier --write .",

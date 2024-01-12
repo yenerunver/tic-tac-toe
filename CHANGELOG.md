@@ -4,10 +4,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.2.0](https://github.com/yenerunver/tic-tac-toe/compare/0.1.1...0.2.0) (2024-01-12)
 
-
 ### Features
 
-* add reset functionality ([97d5f51](https://github.com/yenerunver/tic-tac-toe/commit/97d5f519b748021bfb6da7fd555ac3b770b643ef))
+- add reset functionality ([97d5f51](https://github.com/yenerunver/tic-tac-toe/commit/97d5f519b748021bfb6da7fd555ac3b770b643ef))
 
 ### [0.1.1](https://github.com/yenerunver/tic-tac-toe/compare/0.1.0...0.1.1) (2024-01-12)
 
