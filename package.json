@@ -25,6 +25,8 @@
     "@firebase/app": "^0.9.25",
     "@firebase/auth": "^1.5.1",
     "@firebase/firestore": "^4.4.0",
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^4.6.0",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18"
@@ -58,6 +60,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "deploy": "firebase deploy --only functions --project tic-tac-toe-d1a6f",
     "format": "yarn run format:eslint && yarn run format:prettier",
     "format:eslint": "eslint --fix .",
     "format:prettier": "prettier --write .",
