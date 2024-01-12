@@ -13,6 +13,15 @@ div.app {
 
 div.app > main {
   background-image: var(--background-image);
-  width: 340px;
-  height: 640px;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+@media (min-width: 768px) {
+  div.app > main {
+    width: 340px;
+    height: 640px;
+    border-radius: 1.5rem;
+  }
 }

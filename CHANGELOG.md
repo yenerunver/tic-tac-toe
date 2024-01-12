@@ -7,8 +7,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* minor build issue ([ce59c82](https://github.com/yenerunver/tic-tac-toe/commit/ce59c82c791a28095533adc2d1c2950b773d42f6))
-* remove light theme ([3bdfe57](https://github.com/yenerunver/tic-tac-toe/commit/3bdfe57715f7fa0f8a662df7760cc6e8a24b77ab))
+- minor build issue ([ce59c82](https://github.com/yenerunver/tic-tac-toe/commit/ce59c82c791a28095533adc2d1c2950b773d42f6))
+- remove light theme ([3bdfe57](https://github.com/yenerunver/tic-tac-toe/commit/3bdfe57715f7fa0f8a662df7760cc6e8a24b77ab))
 
 ## [0.2.0](https://github.com/yenerunver/tic-tac-toe/compare/0.1.1...0.2.0) (2024-01-12)
 
