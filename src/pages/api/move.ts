@@ -26,12 +26,18 @@ export default async function handler(
   const countSnapshot = await getCountFromServer(movesRef);
 
   if (countSnapshot.data().count >= 9) {
-    res.status(400).send({ message: "Bad request!" });
+    res.status(400).send({ message: "Too many data!" });
 
     return;
   }
 
   const { body } = req;
+
+  if (body.auth !== process.env.NEXT_PUBLIC_FIREBASE_API_AUTH) {
+    res.status(401).send({ message: "Unauthorized!" });
+
+    return;
+  }
 
   if (!body.username || !body.sign || Number.isNaN(body.square)) {
     res.status(400).send({ message: "Bad request!" });

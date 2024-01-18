@@ -34,6 +34,7 @@ const Board = ({
         square: i,
         sign: xIsNext ? "X" : "O",
         username,
+        auth: process.env.NEXT_PUBLIC_FIREBASE_API_AUTH,
       }),
     });
   };
@@ -65,7 +66,9 @@ const Board = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({
+        auth: process.env.NEXT_PUBLIC_FIREBASE_API_AUTH,
+      }),
     });
   };
 

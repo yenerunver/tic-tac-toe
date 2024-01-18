@@ -17,6 +17,14 @@ export default async function handler(
     return;
   }
 
+  const { body } = req;
+
+  if (body.auth !== process.env.NEXT_PUBLIC_FIREBASE_API_AUTH) {
+    res.status(401).send({ message: "Unauthorized!" });
+
+    return;
+  }
+
   const countSnapshot = await getCountFromServer(movesRef);
 
   if (countSnapshot.data().count === 0) {

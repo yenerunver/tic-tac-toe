@@ -22,12 +22,18 @@ const move = onRequest(
     const countSnapshot = await getCountFromServer(movesRef);
 
     if (countSnapshot.data().count >= 9) {
-      res.status(400).send({ message: "Bad request!" });
+      res.status(400).send({ message: "Too many data!" });
 
       return;
     }
 
     const { body } = req;
+
+    if (body.auth !== process.env.NEXT_PUBLIC_FIREBASE_API_AUTH) {
+      res.status(401).send({ message: "Unauthorized!" });
+
+      return;
+    }
 
     if (!body.username || !body.sign || Number.isNaN(body.square)) {
       res.status(400).send({ message: "Bad request!" });
@@ -55,36 +61,19 @@ const move = onRequest(
   },
 );
 
-const moves = onRequest(
-  { cors: ["http://localhost:3000", "https://localhost"] },
-  async (req, res) => {
-    if (req.method !== "GET") {
-      res.status(405).send({ message: "Only GET requests allowed" });
-
-      return;
-    }
-
-    const movesList: object[] = [];
-
-    try {
-      const querySnapshot = await getDocs(movesRef);
-
-      querySnapshot.forEach((doc) => {
-        movesList.push(doc.data());
-      });
-
-      res.status(200).json({ moves: movesList });
-    } catch (e) {
-      res.status(400).send({ message: "Bad request!" });
-    }
-  },
-);
-
 const reset = onRequest(
   { cors: ["http://localhost:3000", "https://localhost"] },
   async (req, res) => {
     if (req.method !== "POST") {
       res.status(405).send({ message: "Only POST requests allowed" });
+
+      return;
+    }
+
+    const { body } = req;
+
+    if (body.auth !== process.env.NEXT_PUBLIC_FIREBASE_API_AUTH) {
+      res.status(401).send({ message: "Unauthorized!" });
 
       return;
     }
@@ -103,4 +92,4 @@ const reset = onRequest(
   },
 );
 
-export { move, moves, reset };
+export { move, reset };
