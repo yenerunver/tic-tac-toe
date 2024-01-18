@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { getCountFromServer } from "@firebase/firestore";
-
 import { deleteAllMoves, movesRef } from "@/components/firebase";
 
 type ResponseData = {

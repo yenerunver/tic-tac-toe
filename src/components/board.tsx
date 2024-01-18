@@ -18,7 +18,14 @@ const Board = ({
       return;
     }
 
-    fetch("/api/move", {
+    let serviceUrl =
+      "https://us-central1-tic-tac-toe-d1a6f.cloudfunctions.net/move";
+
+    if (window.location.origin === "http://localhost:3000") {
+      serviceUrl = "/api/move";
+    }
+
+    fetch(serviceUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +53,14 @@ const Board = ({
   }
 
   const handleGameReset = async () => {
-    await fetch("/api/reset", {
+    let serviceUrl =
+      "https://us-central1-tic-tac-toe-d1a6f.cloudfunctions.net/reset";
+
+    if (window.location.origin === "http://localhost:3000") {
+      serviceUrl = "/api/reset";
+    }
+
+    await fetch(serviceUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

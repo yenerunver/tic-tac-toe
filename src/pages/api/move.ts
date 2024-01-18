@@ -1,14 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
+import { NextApiRequest, NextApiResponse } from "next";
 import {
+  addDoc,
   getCountFromServer,
   getDocs,
-  addDoc,
-  query,
   limit,
   orderBy,
+  query,
 } from "@firebase/firestore";
-
 import { movesRef } from "@/components/firebase";
 
 type ResponseData = {
@@ -47,9 +45,6 @@ export default async function handler(
   latestEntrySnapshot.forEach((entry) => {
     if (entry.data().sign === body.sign) {
       res.status(400).send({ message: "Bad request!" });
-
-      // eslint-disable-next-line no-useless-return
-      return;
     }
   });
 

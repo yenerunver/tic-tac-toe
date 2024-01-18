@@ -8,15 +8,14 @@
     "stack",
     "game"
   ],
-  "main": "index.js",
+  "main": "src/firebase/tsc/firebase/functions.js",
   "repository": "git@github.com:yenerunver/tic-tac-toe.git",
   "author": "Yener Unver <yenerunver@hotmail.com>",
   "license": "MIT",
   "homepage": "https://yenerunver.github.io/tic-tac-toe",
   "bugs": "https://github.com/yenerunver/tic-tac-toe/issues",
   "engines": {
-    "node": "=18.x",
-    "yarn": ">=1.15"
+    "node": "18"
   },
   "dependencies": {
     "@capacitor/android": "^5.6.0",
@@ -54,13 +53,15 @@
     "prettier": "^3.1.1",
     "standard-version": "^9.5.0",
     "tailwindcss": "^3",
+    "ts-import": "^5.0.0-beta.0",
     "typescript": "^5"
   },
   "scripts": {
     "dev": "next dev",
     "export": "next build",
-    "deploy:android": "next build && npx cap sync && npx cap open android",
-    "deploy:api": "firebase deploy --only functions --project tic-tac-toe-d1a6f",
+    "deploy:android": "rimraf -rf src/firebase/tsc && next build && npx cap sync && npx cap open android",
+    "deploy:api": "tsc -p src/firebase/tsconfig-firebase.json && firebase deploy --only functions",
+    "deploy:db": "firebase deploy --only firestore",
     "format": "yarn run format:eslint && yarn run format:prettier",
     "format:eslint": "eslint --fix .",
     "format:prettier": "prettier --write .",

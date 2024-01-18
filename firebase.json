@@ -1,15 +1,23 @@
 {
   "functions": [
     {
-      "source": "build",
+      "source": ".",
       "codebase": "default",
       "ignore": [
-        "node_modules",
         ".git",
+        ".idea",
+        ".next",
+        "android",
+        "node_modules",
+        "out",
+        "public",
         "firebase-debug.log",
         "firebase-debug.*.log"
-      ],
-      "predeploy": ["yarn format", "yarn build"]
+      ]
     }
-  ]
+  ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
 }

@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { getDocs } from "@firebase/firestore";
-
+import { DocumentData, getDocs } from "@firebase/firestore";
 import { movesRef } from "@/components/firebase";
 
 type ResponseData = {
@@ -19,16 +18,16 @@ export default async function handler(
     return;
   }
 
-  const moves: object[] = [];
+  const movesList: DocumentData[] = [];
 
   try {
     const querySnapshot = await getDocs(movesRef);
 
     querySnapshot.forEach((doc) => {
-      moves.push(doc.data());
+      movesList.push(doc.data());
     });
 
-    res.status(200).json({ moves });
+    res.status(200).json({ moves: movesList });
   } catch (e) {
     res.status(400).send({ message: "Bad request!" });
   }
