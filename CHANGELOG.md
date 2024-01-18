@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/yenerunver/tic-tac-toe/compare/0.2.2...1.0.0) (2024-01-18)
+
+
+### Features
+
+* add Firebase Cloud Functions ([702518a](https://github.com/yenerunver/tic-tac-toe/commit/702518a03cb716ca939870a0b7cfc1cf4b0af7f3))
+
 ### [0.2.2](https://github.com/yenerunver/tic-tac-toe/compare/0.2.1...0.2.2) (2024-01-12)
 
 ### Bug Fixes
