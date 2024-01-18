@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/yenerunver/tic-tac-toe/compare/1.0.0...1.0.1) (2024-01-18)
+
+
+### Features
+
+* add basic auth parameter to apis ([f971670](https://github.com/yenerunver/tic-tac-toe/commit/f9716709901f72722384d1dcd752c2dd01c0ed67))
+
 ## [1.0.0](https://github.com/yenerunver/tic-tac-toe/compare/0.2.2...1.0.0) (2024-01-18)
 
 ### Features
