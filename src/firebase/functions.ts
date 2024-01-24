@@ -1,14 +1,12 @@
 import { onRequest } from "firebase-functions/v2/https";
 
+import { getCountFromServer } from "@firebase/firestore";
 import {
-  addDoc,
-  getCountFromServer,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-} from "@firebase/firestore";
-import { deleteAllMoves, movesRef } from "../components/firebase";
+  addMove,
+  deleteAllMoves,
+  getAllMoves,
+  movesRef,
+} from "../components/firebase";
 
 const move = onRequest(
   { cors: ["http://localhost:3000", "https://localhost"] },
@@ -19,9 +17,9 @@ const move = onRequest(
       return;
     }
 
-    const countSnapshot = await getCountFromServer(movesRef);
+    const allMoves = await getAllMoves();
 
-    if (countSnapshot.data().count >= 9) {
+    if (allMoves.length >= 9) {
       res.status(400).send({ message: "Too many data!" });
 
       return;
@@ -41,21 +39,24 @@ const move = onRequest(
       return;
     }
 
-    const latestEntrySnapshot = await getDocs(
-      query(movesRef, orderBy("timestamp", "desc"), limit(1)),
-    );
-    latestEntrySnapshot.forEach((entry) => {
-      if (entry.data().sign === body.sign) {
-        res.status(400).send({ message: "Bad request!" });
-      }
-    });
+    const latestEntry = allMoves[allMoves.length - 1];
 
-    await addDoc(movesRef, {
-      username: body.username,
-      sign: body.sign,
-      square: body.square,
-      timestamp: Date.now(),
-    });
+    if (latestEntry.data().sign === body.sign) {
+      res.status(400).send({ message: "Bad request!" });
+
+      return;
+    }
+
+    if (
+      allMoves.filter((moveEntry) => moveEntry.data().sign === body.sign)
+        .length > 0
+    ) {
+      res.status(400).send({ message: "Duplicate entry!" });
+
+      return;
+    }
+
+    await addMove(body.username, body.sign, body.square);
 
     res.status(200).json({ message: `OK!` });
   },

@@ -1,10 +1,12 @@
 import { initializeApp } from "@firebase/app";
 import {
+  addDoc,
   collection,
   deleteDoc,
   doc,
   getDocs,
   getFirestore,
+  orderBy,
   query,
 } from "@firebase/firestore";
 
@@ -23,9 +25,23 @@ const db = getFirestore(app);
 
 const movesRef = collection(db, "moves");
 
+const addMove = async (username: string, sign: string, square: number) => {
+  await addDoc(movesRef, {
+    username,
+    sign,
+    square,
+    timestamp: Date.now(),
+  });
+};
+
+const getAllMoves = async () =>
+  getDocs(query(movesRef, orderBy("timestamp", "desc"))).then(
+    (querySnapshot) => querySnapshot.docs,
+  );
+
 const deleteAllMoves = async () => {
-  const allEntries = await getDocs(query(collection(db, "moves")));
+  const allEntries = await getDocs(query(movesRef));
   allEntries.forEach((entry) => deleteDoc(doc(db, "moves", entry.id)));
 };
 
-export { app, db, movesRef, deleteAllMoves };
+export { app, db, movesRef, addMove, getAllMoves, deleteAllMoves };
