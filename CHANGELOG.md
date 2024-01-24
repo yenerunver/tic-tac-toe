@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/yenerunver/tic-tac-toe/compare/1.0.2...1.0.3) (2024-01-24)
+
+
+### Bug Fixes
+
+* prevent double entries ([63d90e6](https://github.com/yenerunver/tic-tac-toe/commit/63d90e6af5fe710b79e2f78384844e311069d1c1))
+
 ### [1.0.2](https://github.com/yenerunver/tic-tac-toe/compare/1.0.1...1.0.2) (2024-01-18)
 
 ### [1.0.1](https://github.com/yenerunver/tic-tac-toe/compare/1.0.0...1.0.1) (2024-01-18)
