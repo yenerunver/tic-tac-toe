@@ -1,6 +1,6 @@
 {
   "name": "tic-tac-toe",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple tic-tac-toe game to showcase a full JS stack including web and mobile applications",
   "keywords": [
     "javascript",
