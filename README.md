@@ -44,6 +44,7 @@ yarn deploy:api
 ```
 
 To have environment variables, below schema is used:
+
 ```env
 NEXT_PUBLIC_FIREBASE_API_KEY=
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=

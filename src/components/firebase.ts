@@ -6,7 +6,6 @@ import {
   doc,
   getDocs,
   getFirestore,
-  orderBy,
   query,
 } from "@firebase/firestore";
 
@@ -34,10 +33,12 @@ const addMove = async (username: string, sign: string, square: number) => {
   });
 };
 
-const getAllMoves = async () =>
-  getDocs(query(movesRef, orderBy("timestamp", "desc"))).then(
-    (querySnapshot) => querySnapshot.docs,
-  );
+const getAllMoves = async () => {
+  const allMoves = (await getDocs(movesRef)).docs.map((entry) => entry.data());
+  allMoves.sort((a, b) => a.timestamp - b.timestamp);
+
+  return allMoves;
+};
 
 const deleteAllMoves = async () => {
   const allEntries = await getDocs(query(movesRef));
